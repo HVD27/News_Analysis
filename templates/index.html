@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hot Topics Explorer</title>
+</head>
+<body>
+    <h1>Hot Topics Explorer</h1>
+    <form action="/top_articles/{{ city }}" method="post">
+        <label for="city">Enter city:</label>
+        <input type="text" id="city" name="city" required>
+        <button type="submit">Explore</button>
+    </form>    <br><hr>
+
+    {% if articles %}
+        {% for article in articles %}
+            <div>
+                <p><strong>Headline:</strong> {{ article.title }}</p>
+                <p><strong>Summary:</strong> {{ article.description }}</p>
+                <p><strong>Link:</strong> {{ article.link }}</p>
+            </div> <br><hr><br>
+        {% endfor %}
+    {% else %}
+        <p>No articles available for {{ city }}.</p>
+    {% endif %}
+</body>
+</html>
