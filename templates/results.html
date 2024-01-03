@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exploration Results</title>
+</head>
+<body>
+    <h1>Exploration Results for {{ city }}</h1>
+    
+    <h2>Top 5 Hot Topics in the News</h2>
+    <ul>
+        {% for topic in hot_topics %}
+            <li>{{ topic }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Discussions on Hot Topics</h2>
+    {% if discussions_info %}
+        {% for discussion in discussions_info %}
+            <div>
+                <p><strong>User:</strong> {{ discussion.user }}</p>
+                <p><strong>Text:</strong> {{ discussion.text }}</p>
+                <p><strong>Created at:</strong> {{ discussion.created_at }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No discussions found for the hot topics.</p>
+    {% endif %}
+
+    <h2>Summary of Discussions</h2>
+    {% if discussions_info %}
+        <p>{{ discussions_info.gpt3_summary }}</p>
+    {% else %}
+        <p>No discussions to summarize.</p>
+    {% endif %}
+</body>
+</html>
